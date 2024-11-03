@@ -1,0 +1,24 @@
+package com.example.gameon.data.remote
+
+import com.example.gameon.data.remote.Dto.GameDto
+import com.example.gameon.data.remote.Dto.GamesResponseDto
+import retrofit2.http.GET
+import retrofit2.http.Query
+
+interface FreeToGame {
+
+    @GET("games")
+    suspend fun getAllGames():List<GamesResponseDto>
+
+    @GET("games")
+    suspend fun getGamesByCategory(
+        @Query ("category") category:String="shooter"
+    ):List<GamesResponseDto>
+
+    @GET("game")
+    suspend fun getGameById(
+        @Query("id") id:Int
+    ): GameDto
+
+
+}
