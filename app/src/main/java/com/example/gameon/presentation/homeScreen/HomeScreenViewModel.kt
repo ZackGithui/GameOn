@@ -8,9 +8,7 @@ import com.example.gameon.domain.repository.GamesRepository
 import com.example.gameon.util.Resource
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
-import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.runBlocking
 import javax.inject.Inject
 
 class GamesViewModel @Inject constructor(private val repository: GamesRepository):ViewModel(){
