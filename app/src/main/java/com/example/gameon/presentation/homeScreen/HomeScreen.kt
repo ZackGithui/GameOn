@@ -6,6 +6,7 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.unit.dp
 
 
 @Composable
@@ -14,7 +15,7 @@ fun HomeScreen(viewModel: GamesViewModel) {
 
 
     Scaffold (
-        modifier = Modifier,
+        modifier = Modifier.padding(10.dp),
         topBar = {},
         bottomBar = {},
         ){paddingValues ->
