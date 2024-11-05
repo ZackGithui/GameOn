@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">GameOn</string>
+    <string name="Title">GameOn</string>
+    <string name="Logo">Logo</string>
 </resources>

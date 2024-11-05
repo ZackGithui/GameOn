@@ -2,25 +2,25 @@ package com.example.gameon.di
 
 import com.example.gameon.data.remote.FreeToGame
 import com.example.gameon.util.BASE_URL
-import com.squareup.moshi.KotlinJsonAdapterFactory
 import com.squareup.moshi.Moshi
+import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
+import dagger.hilt.components.SingletonComponent
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
 import javax.inject.Singleton
 
 
 @Module
-@InstallIn(Singleton::class)
+@InstallIn(SingletonComponent::class)
 object ObjectModule {
 
     @Provides
     @Singleton
-
     fun provideApi():FreeToGame{
-        val moshi =Moshi.Builder()
+        val moshi = Moshi.Builder()
             .add(KotlinJsonAdapterFactory())
             .build()
         return (
