@@ -8,6 +8,7 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Card
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -17,7 +18,9 @@ import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import coil.compose.AsyncImage
 import coil.request.ImageRequest
 import com.example.gameon.R
@@ -26,13 +29,16 @@ import com.example.gameon.domain.model.GamesResponse
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun GameCard(games: GamesResponse) {
+fun GameCard(
+    games: GamesResponse,
+    onClick:()->Unit) {
     Column(modifier = Modifier.padding(2.dp),
         horizontalAlignment = Alignment.CenterHorizontally,
 
     ) {
-        Card(onClick = { /*TODO*/ },
-            modifier = Modifier.size(width = 50.dp,height=70.dp),
+        Card(onClick = { onClick},
+            modifier = Modifier.size(width = 60.dp,height=80.dp)
+                .clip(RoundedCornerShape(5.dp)),
             shape = RectangleShape
                 ) {
             AsyncImage(
@@ -41,13 +47,13 @@ fun GameCard(games: GamesResponse) {
                     .build(),
                 contentDescription = stringResource(id = R.string.game_image),
                 contentScale = ContentScale.Fit,
-                modifier = Modifier.clip(RoundedCornerShape(4.dp)),
+                modifier = Modifier.clip(RoundedCornerShape(5.dp)),
                 alignment = Alignment.Center,
-
 
             )
             Spacer(modifier = Modifier.height(10.dp))
-            Text(text = games.title?:"")
+            Text(text = games.title?:"PUBG",
+                style = MaterialTheme.typography.labelMedium.copy(fontSize = 20.sp) )
 
 
     }
@@ -56,4 +62,20 @@ fun GameCard(games: GamesResponse) {
 
 
     }
+}
+
+@Preview
+@Composable
+private fun GameCardPrev() {
+    GameCard(onClick = {},
+        games = GamesResponse(
+        id = 1,
+        developer = null,
+        title="PUBG",
+        gameUrl = "",
+        description = "",
+        genre = "",
+        shortDescription = "",
+        thumbnail = "",
+    ))
 }

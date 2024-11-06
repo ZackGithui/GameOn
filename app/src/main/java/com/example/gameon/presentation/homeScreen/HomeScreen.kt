@@ -1,7 +1,9 @@
 package com.example.gameon.presentation.homeScreen
 
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
@@ -16,11 +18,26 @@ fun HomeScreen(viewModel: GamesViewModel) {
 
 
     Scaffold (
-        modifier = Modifier.padding(10.dp),
+        modifier = Modifier
+            .fillMaxSize()
+            .padding(10.dp)
+        ,
         topBar = { TopPart()},
         bottomBar = {},
         ){paddingValues ->
-        Column (modifier = Modifier.padding(paddingValues)){
+        Column (
+            modifier = Modifier
+                .padding(paddingValues)
+                .fillMaxSize()){
+            LazyColumn (
+                modifier=Modifier.fillMaxSize()
+            ){
+
+            }
+
+
+
+
 
 
 
