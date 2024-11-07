@@ -9,6 +9,7 @@ import androidx.compose.foundation.layout.Column
 
 
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxSize
 
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -16,8 +17,10 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Close
 import androidx.compose.material.icons.filled.Search
 import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedCard
 import androidx.compose.material3.OutlinedTextField
@@ -28,6 +31,8 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.focus.FocusRequester
+import androidx.compose.ui.focus.focusRequester
 import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.colorResource
@@ -42,7 +47,8 @@ import kotlinx.coroutines.flow.MutableStateFlow
 
 @Composable
 fun TopPart() {
-    Column {
+    Column (modifier=Modifier.fillMaxSize()
+    .background(color=MaterialTheme.colorScheme.background)){
 
 
         Row(
@@ -76,19 +82,34 @@ fun TopPart() {
         var text = remember {
             mutableStateOf("")
         }
+        var focusRequester= remember{
+            FocusRequester()
+        }
 
         OutlinedTextField(
 
             modifier= Modifier
                 .fillMaxWidth()
-                .padding(5.dp),
+                .padding(5.dp)
+                .focusRequester(focusRequester),
             value = "",
             onValueChange ={text},
-            placeholder = {Text("Search...")},
+            placeholder = { Text("Search...")},
             shape= RoundedCornerShape(10.dp),
+            singleLine = true,
+
             leadingIcon = {
 
                 Icon(imageVector = Icons.Default.Search, contentDescription = "")
+            },
+            trailingIcon = {
+                if (!text.equals("")){
+                    IconButton(onClick = { text.value=""}) {
+                        Icon(imageVector = Icons.Default.Close, contentDescription = "")
+
+                    }
+
+                }
             }
 
 
@@ -109,7 +130,7 @@ fun TopPart() {
 
 }
 
-@Preview(showBackground = true,
+@Preview(
     uiMode = Configuration.UI_MODE_NIGHT_YES)
 @Composable
 fun TopPartPrev() {
