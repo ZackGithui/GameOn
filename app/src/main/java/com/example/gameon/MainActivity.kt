@@ -11,6 +11,9 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import com.example.gameon.presentation.components.TopPart
+import com.example.gameon.presentation.homeScreen.GamesViewModel
+import com.example.gameon.presentation.homeScreen.HomeScreen
 import com.example.gameon.ui.theme.GameOnTheme
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -22,6 +25,7 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             GameOnTheme {
+               HomeScreen()
 
             }
         }

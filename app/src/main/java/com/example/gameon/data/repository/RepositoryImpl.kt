@@ -9,8 +9,9 @@ import com.example.gameon.util.safeApiCall
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
+import javax.inject.Inject
 
-class RepositoryImpl(private val api: FreeToGame):GamesRepository {
+class RepositoryImpl @Inject constructor(private val api: FreeToGame):GamesRepository {
     override suspend fun getAllGames(): Flow<Resource<List<GamesResponse>>> =flow {
         safeApiCall(Dispatchers.IO){
             api.getAllGames()

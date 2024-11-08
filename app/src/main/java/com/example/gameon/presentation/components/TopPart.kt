@@ -1,5 +1,4 @@
 package com.example.gameon.presentation.components
-
 import android.content.res.Configuration
 import android.content.res.Resources
 import androidx.compose.foundation.Image
@@ -54,7 +53,8 @@ fun TopPart() {
         Row(
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(10.dp),
+                .padding(10.dp)
+                .padding(top=15.dp),
             horizontalArrangement = Arrangement.SpaceBetween,
             verticalAlignment = Alignment.CenterVertically,
 
