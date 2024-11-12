@@ -24,14 +24,14 @@ import androidx.compose.ui.unit.sp
 import coil.compose.AsyncImage
 import coil.request.ImageRequest
 import com.example.gameon.R
-import com.example.gameon.data.remote.Dto.GamesResponseDtoItem
-import com.example.gameon.domain.model.GamesResponse
+
+import com.example.gameon.domain.model.Games
 
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun GameCard(
-    games: GamesResponseDtoItem,
+    games: Games,
     onClick:()->Unit) {
     Column(modifier = Modifier.padding(2.dp),
         horizontalAlignment = Alignment.CenterHorizontally,

@@ -1,7 +1,6 @@
 package com.example.gameon.domain.model
 
-data class GamesResponse(
-    val description:String?,
+data class Games(
     val thumbnail: String?,
     val shortDescription: String?,
     val id: Int?,
