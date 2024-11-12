@@ -33,7 +33,7 @@ fun HomeScreen(viewModel: GamesViewModel= hiltViewModel()) {
     Scaffold (
         modifier = Modifier
             .fillMaxSize()
-            //.padding(10.dp)
+
         ,
         topBar = { TopPart()},
         bottomBar = {},
@@ -49,21 +49,23 @@ fun HomeScreen(viewModel: GamesViewModel= hiltViewModel()) {
             ){
 
                     if (homeState.shooterGames.isNotEmpty()) {
+
                         item{
                             LazyRow(modifier =Modifier.fillMaxWidth()){
-                            items(homeState.shooterGames) {
-                            GameCard(games = homeState.shooterGames[0],
+                            items(homeState.shooterGames) {IT ->
+                            GameCard(games = IT,
                                 onClick = {})
                                  }
                             }
                         }
 
                     }
+
                     if(homeState.racing.isNotEmpty()) {
                         item{
                             LazyRow(modifier =Modifier.fillMaxWidth()){
-                                items(homeState.shooterGames) {
-                                    GameCard(games = homeState.shooterGames[0],
+                                items(homeState.racing) {it ->
+                                    GameCard(games = it,
                                         onClick = {})
                                 }
                             }
@@ -73,8 +75,8 @@ fun HomeScreen(viewModel: GamesViewModel= hiltViewModel()) {
                     if (homeState.sports.isNotEmpty()) {
                         item{
                             LazyRow(modifier =Modifier.fillMaxWidth()){
-                                items(homeState.shooterGames) {
-                                    GameCard(games = homeState.shooterGames[0],
+                                items(homeState.sports) {
+                                    GameCard(games = homeState.sports[0],
                                         onClick = {})
                                 }
                             }
@@ -85,8 +87,8 @@ fun HomeScreen(viewModel: GamesViewModel= hiltViewModel()) {
                     if (homeState.anime.isNotEmpty()) {
                         item{
                             LazyRow(modifier =Modifier.fillMaxWidth()){
-                                items(homeState.shooterGames) {
-                                    GameCard(games = homeState.shooterGames[0],
+                                items(homeState.anime) {
+                                    GameCard(games = homeState.anime[0],
                                         onClick = {})
                                 }
                             }
@@ -96,8 +98,8 @@ fun HomeScreen(viewModel: GamesViewModel= hiltViewModel()) {
                     if (homeState.fighting.isNotEmpty()) {
                         item{
                             LazyRow(modifier =Modifier.fillMaxWidth()){
-                                items(homeState.shooterGames) {
-                                    GameCard(games = homeState.shooterGames[0],
+                                items(homeState.fighting) {
+                                    GameCard(games = homeState.fighting[0],
                                         onClick = {})
                                 }
                             }
