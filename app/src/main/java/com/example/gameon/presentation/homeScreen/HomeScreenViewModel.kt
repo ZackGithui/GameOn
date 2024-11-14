@@ -1,6 +1,9 @@
 package com.example.gameon.presentation.homeScreen
 
 
+import android.content.ContentValues.TAG
+import android.util.Log
+import androidx.compose.ui.text.toLowerCase
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.gameon.domain.model.Games
@@ -8,7 +11,12 @@ import com.example.gameon.domain.repository.GamesRepository
 import com.example.gameon.util.Resource
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.flow.launchIn
+import kotlinx.coroutines.flow.onEach
+import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -25,40 +33,47 @@ class GamesViewModel @Inject constructor(private val repository: GamesRepository
 
    private fun getGames(){
        viewModelScope.launch {
-           repository.getAllGames().collect{result->
-               when(result) {
-                   is Resource.Success ->{
-                       val games:List<Games> = emptyList()
-                       val shooting= games.filter { it.genre == "Shooter"}
-                       val anime= games.filter { it.genre == "anime" }
-                       val race = games.filter { it.genre.equals("racing") }
-                       val fights =games.filter { it.genre.equals("fighting") }
-                       val sport = games.filter{it.genre.equals("sports")}
-                     _uiState.value=_uiState.value.copy(
-                         shooterGames = shooting,
-                         anime=anime,
-                         racing = race,
-                         fighting = fights,
-                         sports = sport,
-                         isLoading = false
+           repository.getAllGames().collect { result ->
+               when (result) {
+                   is Resource.Success -> {
+                       Log.d(TAG, "Yaay successful")
+                       val games = result.data ?: emptyList()
+                       Log.d(TAG, "all games are $games")
 
+                       val shootingGames = games.filter { it.genre?.lowercase() == "shooter" }
+                       Log.d(TAG, " here are shooting  $shootingGames ")
+                       val anime = games.filter { it.genre?.lowercase() == "anime" }
+                       val race = games.filter { it.genre?.lowercase() == "racing" }
+                       val fights = games.filter { it.genre?.lowercase() == "fighting" }
+                       val sport = games.filter { it.genre?.lowercase() == "sports" }
+                       _uiState.update {
+                           it.copy(
+                               isLoading = false,
+                               shooterGames = shootingGames,
 
-                     )
+                               anime = anime,
+                               racing = race,
+                               fighting = fights,
+                               sports = sport,
+                           )
 
+                       }
+                       Log.d(TAG,"shooting $shootingGames")
 
 
                    }
 
                    is Resource.Error -> {
-                       _uiState.value=_uiState.value.copy(isLoading = false,
+                       _uiState.value = _uiState.value.copy(
+                           isLoading = false,
                            error = result.message ?: "Unexpected error occurred"
                        )
                    }
+
                    is Resource.Loading -> {
-                       _uiState.value= _uiState.value.copy(isLoading = true)
+                       _uiState.value = _uiState.value.copy(isLoading = true)
                    }
                }
-
            }
        }
    }
@@ -82,7 +97,8 @@ data class HomeScreenState(
     val anime:List<Games> = emptyList(),
     val racing :List<Games> = emptyList(),
     val fighting :List<Games> = emptyList(),
-    val sports:List<Games> = emptyList()
+    val sports:List<Games> = emptyList(),
+
 
 
 )

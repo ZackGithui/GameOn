@@ -1,72 +1,59 @@
 package com.example.gameon.presentation.components
 
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material3.Card
-import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.foundation.lazy.LazyRow
+import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
+import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.clip
-import androidx.compose.ui.graphics.RectangleShape
-import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import coil.compose.AsyncImage
-import coil.request.ImageRequest
-import com.example.gameon.R
-
 import com.example.gameon.domain.model.Games
+import com.example.gameon.presentation.components.ImageHolder
 
-
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun GameCard(
-    games: Games,
-    onClick:()->Unit) {
-    Column(modifier = Modifier.padding(2.dp),
-        horizontalAlignment = Alignment.CenterHorizontally,
+    games:List<Games>,
+    text:String,
+    onLabelButtonClicked:()->Unit) {
 
-    ) {
-        Card(onClick = { onClick},
-            modifier = Modifier.size(width = 60.dp,height=80.dp)
-                .clip(RoundedCornerShape(5.dp)),
-            shape = RectangleShape
-                ) {
-            AsyncImage(
-                model = ImageRequest.Builder(LocalContext.current)
-                    .data(games.thumbnail)
-                    .build(),
-                contentDescription = stringResource(id = R.string.game_image),
-                contentScale = ContentScale.Fit,
-                modifier = Modifier.clip(RoundedCornerShape(5.dp)),
-                alignment = Alignment.Center,
+        Row (modifier = Modifier
+            .fillMaxWidth()
+            .padding(5.dp),
+            ){
+            Row(modifier = Modifier.fillMaxWidth(),
+                horizontalArrangement = Arrangement.SpaceBetween) {
+                Text(
+                    text = text?:"",
+                    style = MaterialTheme.typography.bodyMedium.copy(fontSize = 23.sp)
+                )
+                TextButton(onClick = { onLabelButtonClicked}) {
+                    Text(text = "See all", style =MaterialTheme.typography.bodyMedium.copy(fontSize = 23.sp))
 
-            )
-            Spacer(modifier = Modifier.height(10.dp))
-            Text(text = games.title?:"PUBG",
-                style = MaterialTheme.typography.labelMedium.copy(fontSize = 20.sp) )
+                }
+            }
 
+            Spacer(modifier= Modifier.height(5.dp))
 
-    }
-
-
+            LazyRow {
+                items(games){
+                    ImageHolder(imageUrl = it.thumbnail?:"")
+                    Text(text = it.title?:"")
+                }
 
 
-    }
-}
 
-@Preview
-@Composable
-private fun GameCardPrev() {
+            }
+
+        }
+
 
 }

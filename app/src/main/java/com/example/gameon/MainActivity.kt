@@ -1,5 +1,6 @@
 package com.example.gameon
 
+
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -14,6 +15,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import com.example.gameon.presentation.components.TopPart
 import com.example.gameon.presentation.homeScreen.GamesViewModel
 import com.example.gameon.presentation.homeScreen.HomeScreen
+
 import com.example.gameon.ui.theme.GameOnTheme
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -22,7 +24,7 @@ import dagger.hilt.android.AndroidEntryPoint
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
+
         setContent {
             GameOnTheme {
                HomeScreen()
