@@ -23,22 +23,32 @@ fun HomeScreen(viewModel: GamesViewModel = hiltViewModel()) {
 
     Log.d(TAG, "shooterGames loaded: ${state.shooterGames.isNotEmpty()}")
 
-    Scaffold (modifier = Modifier
-        .fillMaxSize()
-        .background(color = MaterialTheme.colorScheme.background),
-        topBar = { TopPart()},
-        content = {paddingValues ->
-            LazyColumn (modifier = Modifier
-                .fillMaxSize()
-                .padding(paddingValues)){
-                if(state.shooterGames.isNotEmpty()){
-                    items(state.shooterGames) {game->
+    Scaffold(
+        modifier = Modifier
+            .fillMaxSize()
+            .background(color = MaterialTheme.colorScheme.background),
+        topBar = { TopPart() },
+        content = { paddingValues ->
+            LazyColumn(
+                modifier = Modifier
+                    .fillMaxSize()
+                    .padding(paddingValues)
+            ) {
+                if (state.shooterGames.isNotEmpty()) {
+                    item {
                         GameCard(
                             games = state.shooterGames,
-                            text = game.genre?:"",
+                            text = "Shooting",
                             onLabelButtonClicked = {}
                         )
                     }
+                }
+                if(state.racing.isNotEmpty()){
+                   item {
+                     GameCard(games = state.racing,
+                         text ="Racing",
+                         onLabelButtonClicked = {})
+                   }
                 }
 
 
@@ -47,5 +57,5 @@ fun HomeScreen(viewModel: GamesViewModel = hiltViewModel()) {
         },
 
 
-    )
+        )
 }

@@ -16,7 +16,7 @@ import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
 import coil.request.ImageRequest
 import com.example.gameon.R
-import com.example.gameon.domain.model.Games
+
 
 @Composable
 fun ImageHolder(imageUrl:String) {

@@ -24,31 +24,37 @@ fun GameCard(
     games:List<Games>,
     text:String,
     onLabelButtonClicked:()->Unit) {
-
-        Row (modifier = Modifier
-            .fillMaxWidth()
-            .padding(5.dp),
-            ){
-            Row(modifier = Modifier.fillMaxWidth(),
-                horizontalArrangement = Arrangement.SpaceBetween) {
+    Column( modifier = Modifier .fillMaxWidth()
+        .padding(5.dp) ) {
+        Row(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(5.dp),
+        ) {
+            Row(
+                modifier = Modifier.fillMaxWidth(),
+                horizontalArrangement = Arrangement.SpaceBetween
+            ) {
                 Text(
-                    text = text?:"",
+                    text = text ?: "",
                     style = MaterialTheme.typography.bodyMedium.copy(fontSize = 23.sp)
                 )
-                TextButton(onClick = { onLabelButtonClicked}) {
-                    Text(text = "See all", style =MaterialTheme.typography.bodyMedium.copy(fontSize = 23.sp))
+                TextButton(onClick = { onLabelButtonClicked }) {
+                    Text(
+                        text = "See all",
+                        style = MaterialTheme.typography.bodyMedium.copy(fontSize = 23.sp)
+                    )
 
                 }
             }
 
-            Spacer(modifier= Modifier.height(5.dp))
+            Spacer(modifier = Modifier.height(5.dp))
 
             LazyRow {
-                items(games){
-                    ImageHolder(imageUrl = it.thumbnail?:"")
-                    Text(text = it.title?:"")
+                items(games) {
+                    ImageHolder(imageUrl = it.thumbnail ?: "")
+                    Text(text = it.title ?: "")
                 }
-
 
 
             }
@@ -56,4 +62,5 @@ fun GameCard(
         }
 
 
+    }
 }
