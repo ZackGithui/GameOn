@@ -21,24 +21,26 @@ object ObjectModule {
 
     @Provides
     @Singleton
-    fun provideApi():FreeToGame{
-        val moshi:Moshi = Moshi.Builder()
+     fun provideMoshi():Moshi {
+        return Moshi.Builder()
             .add(KotlinJsonAdapterFactory())
             .build()
-        return (
-                Retrofit.Builder()
-                    .baseUrl(BASE_URL)
-                    .addConverterFactory(MoshiConverterFactory.create(moshi))
-                    .build()
-                    .create(FreeToGame::class.java)
-                )
 
     }
 
     @Provides
     @Singleton
-    fun provideRepository(repositoryImpl: RepositoryImpl):GamesRepository{
-        return repositoryImpl
+    fun provideRetrofit(moshi: Moshi):Retrofit{
+        return Retrofit.Builder()
+            .baseUrl(BASE_URL)
+            .addConverterFactory(MoshiConverterFactory.create(moshi))
+            .build()
+    }
+
+    @Provides
+    @Singleton
+    fun provideApi(retrofit: Retrofit):FreeToGame{
+        return retrofit.create(FreeToGame::class.java)
     }
 
 

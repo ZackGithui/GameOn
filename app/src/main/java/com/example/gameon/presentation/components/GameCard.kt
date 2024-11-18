@@ -21,46 +21,53 @@ import com.example.gameon.presentation.components.ImageHolder
 
 @Composable
 fun GameCard(
-    games:List<Games>,
-    text:String,
-    onLabelButtonClicked:()->Unit) {
-    Column( modifier = Modifier .fillMaxWidth()
-        .padding(5.dp) ) {
+    games: List<Games>,
+    text: String,
+    onLabelButtonClicked: () -> Unit
+) {
+    Column(
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(5.dp)
+    ) {
+        // Header row
         Row(
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(5.dp),
+            horizontalArrangement = Arrangement.SpaceBetween
         ) {
-            Row(
-                modifier = Modifier.fillMaxWidth(),
-                horizontalArrangement = Arrangement.SpaceBetween
-            ) {
+            Text(
+                text = text,
+                style = MaterialTheme.typography.bodyMedium.copy(fontSize = 23.sp)
+            )
+            TextButton(onClick = onLabelButtonClicked) {
                 Text(
-                    text = text ?: "",
-                    style = MaterialTheme.typography.bodyMedium.copy(fontSize = 23.sp)
+                    text = "See all",
+                    style = MaterialTheme.typography.bodyMedium.copy(fontSize = 18.sp)
                 )
-                TextButton(onClick = { onLabelButtonClicked }) {
-                    Text(
-                        text = "See all",
-                        style = MaterialTheme.typography.bodyMedium.copy(fontSize = 23.sp)
-                    )
-
-                }
             }
-
-            Spacer(modifier = Modifier.height(5.dp))
-
-            LazyRow {
-                items(games) {
-                    ImageHolder(imageUrl = it.thumbnail ?: "")
-                    Text(text = it.title ?: "")
-                }
-
-
-            }
-
         }
 
+        Spacer(modifier = Modifier.height(5.dp))
 
+        // LazyRow for game items
+        LazyRow(
+            modifier = Modifier.padding(vertical = 8.dp),
+            horizontalArrangement = Arrangement.spacedBy(10.dp)
+        ) {
+            items(games) { game ->
+                Column(
+                    modifier = Modifier.padding(5.dp)
+                ) {
+                    ImageHolder(imageUrl = game.thumbnail ?: "")
+                    Text(
+                        text = game.title ?: "Unknown Title",
+                        style = MaterialTheme.typography.bodySmall,
+                        modifier = Modifier.padding(top = 4.dp)
+                    )
+                }
+            }
+        }
     }
 }
