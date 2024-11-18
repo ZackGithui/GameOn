@@ -16,13 +16,14 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.example.gameon.presentation.components.TopPart
 
 
 @Composable
 fun HomeScreen(viewModel: GamesViewModel = hiltViewModel()) {
 
-    val state = viewModel.uiState.collectAsState().value
+    val state = viewModel.uiState.collectAsStateWithLifecycle().value
 
     Log.d(TAG, "shooterGames loaded: ${state.shooterGames.isNotEmpty()}")
 
