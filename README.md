@@ -1,6 +1,6 @@
 # GameOn
 🚧 **Work in Progress** 🚧  
-GameOn is an androis application that recommend games to users.
+GameOn is an android application that recommends games to users.
 
 
 
