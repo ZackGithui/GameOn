@@ -1,19 +1,12 @@
 package com.example.gameon.ui.theme
 
-import android.app.Activity
-import android.os.Build
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.lightColorScheme
 import androidx.compose.material3.darkColorScheme
-import androidx.compose.material3.dynamicDarkColorScheme
-import androidx.compose.material3.dynamicLightColorScheme
-import androidx.compose.material3.Typography
+import androidx.compose.material3.lightColorScheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.Immutable
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.toArgb
-import androidx.compose.ui.platform.LocalContext
 
 private val lightScheme = lightColorScheme(
     primary = primaryLight,
@@ -45,7 +38,7 @@ private val lightScheme = lightColorScheme(
     inverseOnSurface = inverseOnSurfaceLight,
     inversePrimary = inversePrimaryLight,
 
-)
+    )
 
 private val darkScheme = darkColorScheme(
     primary = primaryDark,
@@ -77,7 +70,7 @@ private val darkScheme = darkColorScheme(
     inverseOnSurface = inverseOnSurfaceDark,
     inversePrimary = inversePrimaryDark,
 
-)
+    )
 
 private val mediumContrastLightColorScheme = lightColorScheme(
     primary = primaryLightMediumContrast,
@@ -109,7 +102,7 @@ private val mediumContrastLightColorScheme = lightColorScheme(
     inverseOnSurface = inverseOnSurfaceLightMediumContrast,
     inversePrimary = inversePrimaryLightMediumContrast,
 
-)
+    )
 
 private val highContrastLightColorScheme = lightColorScheme(
     primary = primaryLightHighContrast,
@@ -141,7 +134,7 @@ private val highContrastLightColorScheme = lightColorScheme(
     inverseOnSurface = inverseOnSurfaceLightHighContrast,
     inversePrimary = inversePrimaryLightHighContrast,
 
-)
+    )
 
 private val mediumContrastDarkColorScheme = darkColorScheme(
     primary = primaryDarkMediumContrast,
@@ -173,7 +166,7 @@ private val mediumContrastDarkColorScheme = darkColorScheme(
     inverseOnSurface = inverseOnSurfaceDarkMediumContrast,
     inversePrimary = inversePrimaryDarkMediumContrast,
 
-)
+    )
 
 private val highContrastDarkColorScheme = darkColorScheme(
     primary = primaryDarkHighContrast,
@@ -205,7 +198,7 @@ private val highContrastDarkColorScheme = darkColorScheme(
     inverseOnSurface = inverseOnSurfaceDarkHighContrast,
     inversePrimary = inversePrimaryDarkHighContrast,
 
-)
+    )
 
 @Immutable
 data class ColorFamily(
@@ -227,10 +220,10 @@ fun GameOnTheme(
     content: @Composable() () -> Unit
 ) {
     val colorScheme = when {
-    //    dynamicColor && Build.VERSION.SDK_INT >= Build.VERSION_CODES.S -> {
-         //   val context = LocalContext.current
-      //      if (darkTheme) dynamicDarkColorScheme(context) else dynamicLightColorScheme(context)
-      //  }
+        //    dynamicColor && Build.VERSION.SDK_INT >= Build.VERSION_CODES.S -> {
+        //   val context = LocalContext.current
+        //      if (darkTheme) dynamicDarkColorScheme(context) else dynamicLightColorScheme(context)
+        //  }
 
         darkTheme -> darkScheme
         else -> lightScheme

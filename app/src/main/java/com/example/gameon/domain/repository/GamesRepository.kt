@@ -8,9 +8,9 @@ import kotlinx.coroutines.flow.Flow
 
 interface GamesRepository {
 
-    suspend fun getAllGames():Flow<Resource<List<Games>>>
+    suspend fun getAllGames(): Flow<Resource<List<Games>>>
 
-    suspend fun getGamesByCategories(category:String):Flow<Resource<List<Games>>>
+    suspend fun getGamesByCategories(category: String): Flow<Resource<List<Games>>>
 
-    suspend fun getGameById(id:Int):Flow<Resource<Game>>
+    suspend fun getGameById(id: Int): Flow<Resource<Game>>
 }

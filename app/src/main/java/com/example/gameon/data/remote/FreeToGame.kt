@@ -14,12 +14,12 @@ interface FreeToGame {
 
     @GET("games")
     suspend fun getGamesByCategory(
-        @Query ("category") category:String="shooter"
-    ):List<GamesResponseItem>
+        @Query("category") category: String = "shooter"
+    ): List<GamesResponseItem>
 
     @GET("game")
     suspend fun getGameById(
-        @Query("id") id:Int
+        @Query("id") id: Int
     ): GameResponse
 
 

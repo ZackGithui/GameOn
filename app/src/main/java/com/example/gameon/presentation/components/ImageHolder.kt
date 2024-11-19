@@ -19,12 +19,13 @@ import com.example.gameon.R
 
 
 @Composable
-fun ImageHolder(imageUrl:String) {
-    Card ( modifier = Modifier
-        .height(80.dp)
-        .width(80.dp)
-        .padding(start = 8.dp)
-        ){
+fun ImageHolder(imageUrl: String) {
+    Card(
+        modifier = Modifier
+            .height(80.dp)
+            .width(80.dp)
+            .padding(start = 8.dp)
+    ) {
         AsyncImage(
             model = ImageRequest.Builder(LocalContext.current)
                 .data(imageUrl)
@@ -32,7 +33,8 @@ fun ImageHolder(imageUrl:String) {
             contentDescription = stringResource(id = R.string.game_image),
             contentScale = ContentScale.Crop,
             modifier = Modifier.clip(RoundedCornerShape(4.dp)),
-            alignment = Alignment.Center )
+            alignment = Alignment.Center
+        )
     }
 
 }

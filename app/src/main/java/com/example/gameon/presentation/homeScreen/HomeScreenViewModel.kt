@@ -31,12 +31,9 @@ class GamesViewModel @Inject constructor(private val repository: GamesRepository
             repository.getAllGames().collect { result ->
                 when (result) {
                     is Resource.Success -> {
-                        Log.d(TAG, "Yaay successful")
-                        val games = result.data ?: emptyList()
-                        Log.d(TAG, "all games are $games")
 
+                        val games = result.data ?: emptyList()
                         val shootingGames = games.filter { it.genre?.lowercase() == "shooter" }
-                        Log.d(TAG, " here are shooting  $shootingGames ")
                         val anime = games.filter { it.genre?.lowercase() == "anime" }
                         val race = games.filter { it.genre?.lowercase() == "racing" }
                         val fights = games.filter { it.genre?.lowercase() == "fighting" }
@@ -52,7 +49,6 @@ class GamesViewModel @Inject constructor(private val repository: GamesRepository
                             )
 
                         }
-                        Log.d(TAG, "shooting $shootingGames")
 
 
                     }

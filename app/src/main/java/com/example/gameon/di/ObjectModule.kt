@@ -1,8 +1,6 @@
 package com.example.gameon.di
 
 import com.example.gameon.data.remote.FreeToGame
-import com.example.gameon.data.repository.RepositoryImpl
-import com.example.gameon.domain.repository.GamesRepository
 import com.example.gameon.util.BASE_URL
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
@@ -21,7 +19,7 @@ object ObjectModule {
 
     @Provides
     @Singleton
-     fun provideMoshi():Moshi {
+    fun provideMoshi(): Moshi {
         return Moshi.Builder()
             .add(KotlinJsonAdapterFactory())
             .build()
@@ -30,7 +28,7 @@ object ObjectModule {
 
     @Provides
     @Singleton
-    fun provideRetrofit(moshi: Moshi):Retrofit{
+    fun provideRetrofit(moshi: Moshi): Retrofit {
         return Retrofit.Builder()
             .baseUrl(BASE_URL)
             .addConverterFactory(MoshiConverterFactory.create(moshi))
@@ -39,12 +37,9 @@ object ObjectModule {
 
     @Provides
     @Singleton
-    fun provideApi(retrofit: Retrofit):FreeToGame{
+    fun provideApi(retrofit: Retrofit): FreeToGame {
         return retrofit.create(FreeToGame::class.java)
     }
-
-
-
 
 
 }

@@ -1,7 +1,5 @@
 package com.example.gameon.presentation.homeScreen
 
-import android.content.ContentValues.TAG
-import android.util.Log
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
@@ -21,7 +19,7 @@ fun HomeScreen(viewModel: GamesViewModel = hiltViewModel()) {
 
     val state = viewModel.uiState.collectAsStateWithLifecycle().value
 
-    Log.d(TAG, "shooterGames loaded: ${state.shooterGames.isNotEmpty()}")
+
 
     Scaffold(
         modifier = Modifier
@@ -43,6 +41,34 @@ fun HomeScreen(viewModel: GamesViewModel = hiltViewModel()) {
                             onLabelButtonClicked = {})
                     }
                 }
+                if (state.anime.isNotEmpty()) {
+                    item {
+                        GameCard(
+                            games = state.anime,
+                            text = "Anime",
+                            onLabelButtonClicked = {}
+                        )
+                    }
+                }
+                if (state.sports.isNotEmpty()) {
+                    item {
+                        GameCard(
+                            games = state.sports,
+                            text = "Sports",
+                            onLabelButtonClicked = {}
+                        )
+                    }
+                }
+                if (state.fighting.isNotEmpty()) {
+                    item {
+                        GameCard(
+                            games = state.fighting,
+                            text = "Fighting",
+                            onLabelButtonClicked = {})
+                    }
+                }
+
+
                 if (state.racing.isNotEmpty()) {
                     item {
                         GameCard(games = state.racing,
