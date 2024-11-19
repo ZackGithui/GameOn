@@ -6,7 +6,6 @@ import com.example.gameon.domain.model.Games
 
 fun GamesResponseItem.toGames(): Games {
     return Games(
-
         title = title,
         gameUrl = gameUrl,
         thumbnail = thumbnail,
@@ -14,7 +13,5 @@ fun GamesResponseItem.toGames(): Games {
         genre = genre,
         id = id,
         shortDescription = shortDescription
-
-
     )
 }
