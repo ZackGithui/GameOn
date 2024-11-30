@@ -5,10 +5,10 @@ import androidx.lifecycle.viewModelScope
 import com.example.gameon.domain.model.Games
 import com.example.gameon.domain.repository.GamesRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
-import javax.inject.Inject
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
 @HiltViewModel
 class GamesViewModel @Inject constructor(private val repository: GamesRepository) : ViewModel() {
@@ -24,7 +24,7 @@ class GamesViewModel @Inject constructor(private val repository: GamesRepository
         viewModelScope.launch {
             try {
                 _uiState.value.isLoading = true
-                val x = repository.getAllGames()
+                repository.getAllGames()
                 _uiState.value = _uiState.value.copy(
                     isLoading = false,
                     shooterGames = repository.getAllGames().data!!.filter { it.genre?.lowercase() == "shooter" },
