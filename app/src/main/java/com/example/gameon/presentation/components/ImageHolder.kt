@@ -6,7 +6,6 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Card
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.ContentScale
@@ -17,13 +16,12 @@ import coil.compose.AsyncImage
 import coil.request.ImageRequest
 import com.example.gameon.R
 
-
 @Composable
 fun ImageHolder(imageUrl: String) {
     Card(
         modifier = Modifier
-            .height(80.dp)
-            .width(80.dp)
+            .height(150.dp)
+            .width(100.dp)
             .padding(start = 8.dp)
     ) {
         AsyncImage(
@@ -31,10 +29,12 @@ fun ImageHolder(imageUrl: String) {
                 .data(imageUrl)
                 .build(),
             contentDescription = stringResource(id = R.string.game_image),
-            contentScale = ContentScale.Crop,
-            modifier = Modifier.clip(RoundedCornerShape(4.dp)),
-            alignment = Alignment.Center
+            modifier = Modifier
+                .clip(RoundedCornerShape(4.dp))
+                .width(100.dp)
+                .height(150.dp),
+            contentScale = ContentScale.Crop
+
         )
     }
-
 }

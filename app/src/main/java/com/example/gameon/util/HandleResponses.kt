@@ -1,10 +1,9 @@
 package com.example.gameon.util
 
+import java.io.IOException
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.withContext
 import retrofit2.HttpException
-import java.io.IOException
-
 
 suspend fun <T> safeApiCall(
     dispatcher: CoroutineDispatcher,
@@ -18,10 +17,7 @@ suspend fun <T> safeApiCall(
                 is IOException -> Resource.Error("No internet connection")
                 is HttpException -> Resource.Error("Server error occurred")
                 else -> Resource.Error(throwable.message ?: "Unexpected error occurred")
-
             }
-
         }
     }
-
 }

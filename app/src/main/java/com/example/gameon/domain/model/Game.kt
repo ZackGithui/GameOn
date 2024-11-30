@@ -8,5 +8,5 @@ data class Game(
     val title: String?,
     val genre: String?,
     val developer: String?,
-    val gameUrl: String?,
+    val gameUrl: String?
 )

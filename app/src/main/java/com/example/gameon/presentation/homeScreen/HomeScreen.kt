@@ -11,15 +11,12 @@ import androidx.compose.ui.Modifier
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.example.gameon.presentation.components.GameCard
+import com.example.gameon.presentation.components.ShimmerScreen
 import com.example.gameon.presentation.components.TopPart
-
 
 @Composable
 fun HomeScreen(viewModel: GamesViewModel = hiltViewModel()) {
-
     val state = viewModel.uiState.collectAsStateWithLifecycle().value
-
-
 
     Scaffold(
         modifier = Modifier
@@ -33,12 +30,18 @@ fun HomeScreen(viewModel: GamesViewModel = hiltViewModel()) {
                     .fillMaxSize()
 
             ) {
+                if (state.isLoading) {
+                    items(6) {
+                        ShimmerScreen()
+                    }
+                }
                 if (state.shooterGames.isNotEmpty()) {
                     item {
                         GameCard(
                             games = state.shooterGames,
                             text = "Shooting",
-                            onLabelButtonClicked = {})
+                            onLabelButtonClicked = {}
+                        )
                     }
                 }
                 if (state.anime.isNotEmpty()) {
@@ -64,24 +67,22 @@ fun HomeScreen(viewModel: GamesViewModel = hiltViewModel()) {
                         GameCard(
                             games = state.fighting,
                             text = "Fighting",
-                            onLabelButtonClicked = {})
+                            onLabelButtonClicked = {}
+                        )
                     }
                 }
-
 
                 if (state.racing.isNotEmpty()) {
                     item {
-                        GameCard(games = state.racing,
+                        GameCard(
+                            games = state.racing,
                             text = "Racing",
-                            onLabelButtonClicked = {})
+                            onLabelButtonClicked = {}
+                        )
                     }
                 }
-
-
             }
+        }
 
-        },
-
-
-        )
+    )
 }

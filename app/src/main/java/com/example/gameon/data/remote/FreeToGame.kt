@@ -1,8 +1,6 @@
 package com.example.gameon.data.remote
 
-
 import com.example.gameon.data.remote.Dto.GameResponse
-
 import com.example.gameon.data.remote.Dto.GamesResponseItem
 import retrofit2.http.GET
 import retrofit2.http.Query
@@ -21,6 +19,4 @@ interface FreeToGame {
     suspend fun getGameById(
         @Query("id") id: Int
     ): GameResponse
-
-
 }
