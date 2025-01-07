@@ -9,6 +9,7 @@ import javax.inject.Inject
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
+
 @HiltViewModel
 class GameViewModel @Inject constructor(private val repository: GamesRepository) : ViewModel() {
     private val _state = MutableStateFlow(GameState())
@@ -18,7 +19,7 @@ class GameViewModel @Inject constructor(private val repository: GamesRepository)
         viewModelScope.launch {
             val game = repository.getGameById(id) // Fetch the game from the repository
             _state.value = _state.value.copy(
-                id = id,
+
                 game = game
             )
         }
@@ -26,6 +27,6 @@ class GameViewModel @Inject constructor(private val repository: GamesRepository)
 }
 
 data class GameState(
-    val id: Int = 0,
+
     val game: Game? = null
 )

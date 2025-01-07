@@ -3,7 +3,9 @@ package com.example.gameon.presentation.components
 import android.content.res.Configuration
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -32,13 +34,17 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavHostController
 import com.example.gameon.R
+import com.example.gameon.presentation.navigation.AppScreens
 
 @Composable
-fun TopPart() {
+fun TopPart(
+    navController: NavHostController
+) {
     Column(
         modifier = Modifier
-            .background(color = MaterialTheme.colorScheme.background)
+            .background(color = MaterialTheme.colorScheme.onPrimary)
     ) {
         Row(
             modifier = Modifier
@@ -69,29 +75,35 @@ fun TopPart() {
             mutableStateOf("")
         }
 
-        OutlinedTextField(
-
+        Box(
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(5.dp),
-            value = text,
-            onValueChange = { text = it },
-            placeholder = { Text("Search...") },
-            shape = RoundedCornerShape(10.dp),
-            singleLine = true,
-
-            leadingIcon = {
-                Icon(imageVector = Icons.Default.Search, contentDescription = "")
-            },
-            trailingIcon = {
-                if (text.isNotEmpty()) {
-                    IconButton(onClick = { text = "" }) {
-                        Icon(imageVector = Icons.Default.Close, contentDescription = "")
+                .padding(5.dp)
+                .clickable { navController.navigate(AppScreens.SearchScreens.route) }
+        ) {
+            OutlinedTextField(
+                modifier = Modifier.fillMaxWidth(),
+                value = text,
+                onValueChange = { text = it },
+                placeholder = { Text("Search...") },
+                shape = RoundedCornerShape(10.dp),
+                singleLine = true,
+                leadingIcon = {
+                    Icon(imageVector = Icons.Default.Search, contentDescription = "Search Icon")
+                },
+                trailingIcon = {
+                    if (text.isNotEmpty()) {
+                        IconButton(onClick = { text = "" }) {
+                            Icon(
+                                imageVector = Icons.Default.Close,
+                                contentDescription = "Clear Search"
+                            )
+                        }
                     }
-                }
-            }
-
-        )
+                },
+                enabled = false // Prevent keyboard from showing up since click navigates
+            )
+        }
     }
 }
 
@@ -100,11 +112,9 @@ fun TopPart() {
 )
 @Composable
 fun TopPartPrev() {
-    TopPart()
 }
 
 @Preview(showBackground = true, uiMode = Configuration.UI_MODE_NIGHT_NO)
 @Composable
 fun TopPartPrev1() {
-    TopPart()
 }

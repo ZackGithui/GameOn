@@ -57,11 +57,11 @@ fun ShimmerScreen() {
         start = Offset.Zero,
         end = Offset(x = animateTransition.value, y = animateTransition.value)
     )
-    shimmerObject(brush = brush)
+    ShimmerObject(brush = brush)
 }
 
 @Composable
-fun shimmerObject(brush: Brush) {
+fun ShimmerObject(brush: Brush) {
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -111,8 +111,8 @@ fun shimmerObject(brush: Brush) {
 
 @Preview(uiMode = Configuration.UI_MODE_NIGHT_YES)
 @Composable
-private fun shimmerPrev() {
-    shimmerObject(
+private fun ShimmerPrev() {
+    ShimmerObject(
         brush = Brush.linearGradient(
             colors = listOf(
                 Color.LightGray.copy(0.6f),
@@ -125,8 +125,8 @@ private fun shimmerPrev() {
 
 @Preview(uiMode = Configuration.UI_MODE_NIGHT_NO)
 @Composable
-private fun shimmerPrev2() {
-    shimmerObject(
+private fun ShimmerPrev2() {
+    ShimmerObject(
         brush = Brush.linearGradient(
             colors = listOf(
                 Color.LightGray.copy(0.7f),

@@ -1,10 +1,12 @@
 package com.example.gameon.presentation.components
 
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Card
+import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -16,13 +18,19 @@ import coil.compose.AsyncImage
 import coil.request.ImageRequest
 import com.example.gameon.R
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun ImageHolder(imageUrl: String) {
+fun ImageHolder(
+    onClick: () -> Unit,
+    imageUrl: String
+) {
     Card(
         modifier = Modifier
             .height(150.dp)
             .width(100.dp)
             .padding(start = 8.dp)
+            .clickable { onClick() }
+
     ) {
         AsyncImage(
             model = ImageRequest.Builder(LocalContext.current)

@@ -10,19 +10,26 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import androidx.navigation.NavHostController
 import com.example.gameon.presentation.components.GameCard
 import com.example.gameon.presentation.components.ShimmerScreen
 import com.example.gameon.presentation.components.TopPart
+import com.example.gameon.presentation.navigation.AppScreens
 
 @Composable
-fun HomeScreen(viewModel: GamesViewModel = hiltViewModel()) {
+fun HomeScreen(
+    viewModel: GamesViewModel = hiltViewModel(),
+    navController: NavHostController
+
+) {
     val state = viewModel.uiState.collectAsStateWithLifecycle().value
 
     Scaffold(
         modifier = Modifier
             .fillMaxSize()
             .background(color = MaterialTheme.colorScheme.background),
-        topBar = { TopPart() },
+        topBar = { TopPart(navController) },
+        bottomBar = {},
         content = { paddingValues ->
             LazyColumn(
                 modifier = Modifier
@@ -40,7 +47,14 @@ fun HomeScreen(viewModel: GamesViewModel = hiltViewModel()) {
                         GameCard(
                             games = state.shooterGames,
                             text = "Shooting",
-                            onLabelButtonClicked = {}
+                            onLabelButtonClicked = {},
+                            onGameClicked = { gameId ->
+                                navController.navigate(
+                                    AppScreens.GameScreen.createRoute(
+                                        gameId
+                                    )
+                                )
+                            }
                         )
                     }
                 }
@@ -49,7 +63,8 @@ fun HomeScreen(viewModel: GamesViewModel = hiltViewModel()) {
                         GameCard(
                             games = state.anime,
                             text = "Anime",
-                            onLabelButtonClicked = {}
+                            onLabelButtonClicked = {},
+                            onGameClicked = {}
                         )
                     }
                 }
@@ -58,7 +73,8 @@ fun HomeScreen(viewModel: GamesViewModel = hiltViewModel()) {
                         GameCard(
                             games = state.sports,
                             text = "Sports",
-                            onLabelButtonClicked = {}
+                            onLabelButtonClicked = {},
+                            onGameClicked = {}
                         )
                     }
                 }
@@ -67,7 +83,8 @@ fun HomeScreen(viewModel: GamesViewModel = hiltViewModel()) {
                         GameCard(
                             games = state.fighting,
                             text = "Fighting",
-                            onLabelButtonClicked = {}
+                            onLabelButtonClicked = {},
+                            onGameClicked = {}
                         )
                     }
                 }
@@ -77,7 +94,8 @@ fun HomeScreen(viewModel: GamesViewModel = hiltViewModel()) {
                         GameCard(
                             games = state.racing,
                             text = "Racing",
-                            onLabelButtonClicked = {}
+                            onLabelButtonClicked = {},
+                            onGameClicked = {}
                         )
                     }
                 }

@@ -5,16 +5,26 @@ import androidx.lifecycle.viewModelScope
 import com.example.gameon.domain.model.Games
 import com.example.gameon.domain.repository.GamesRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
+import javax.inject.Inject
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
-import javax.inject.Inject
 
 @HiltViewModel
 class GamesViewModel @Inject constructor(private val repository: GamesRepository) : ViewModel() {
 
     private var _uiState: MutableStateFlow<HomeScreenState> = MutableStateFlow(HomeScreenState())
     val uiState get() = _uiState.asStateFlow()
+
+    fun onEvents(events: UiEvents) {
+        when (events) {
+            is UiEvents.GameClicked -> {
+                _uiState.value = _uiState.value.copy(
+                    selectedGame = events.game
+                )
+            }
+        }
+    }
 
     init {
         getGames()
@@ -52,6 +62,11 @@ data class HomeScreenState(
     val anime: List<Games> = emptyList(),
     val racing: List<Games> = emptyList(),
     val fighting: List<Games> = emptyList(),
-    val sports: List<Games> = emptyList()
+    val sports: List<Games> = emptyList(),
+    val selectedGame: Games? = null
 
 )
+
+sealed class UiEvents {
+    data class GameClicked(val game: Games) : UiEvents()
+}

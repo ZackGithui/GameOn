@@ -3,7 +3,17 @@ package com.example.gameon
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.activity.enableEdgeToEdge
+import androidx.compose.runtime.Composable
+import androidx.navigation.NavType
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
+import androidx.navigation.compose.rememberNavController
+import androidx.navigation.navArgument
+import com.example.gameon.presentation.game.Game
 import com.example.gameon.presentation.homeScreen.HomeScreen
+import com.example.gameon.presentation.navigation.AppScreens
+import com.example.gameon.presentation.search.SearchScreen
 import com.example.gameon.ui.theme.GameOnTheme
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -11,11 +21,32 @@ import dagger.hilt.android.AndroidEntryPoint
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        enableEdgeToEdge()
 
-        setContent { // hdh
+        setContent {
             GameOnTheme {
-                HomeScreen()
+                App()
             }
+        }
+    }
+}
+
+@Composable
+fun App() {
+    val navController = rememberNavController()
+    NavHost(navController = navController, startDestination = AppScreens.HomeScreens.route) {
+        composable(AppScreens.HomeScreens.route) {
+            HomeScreen(navController = navController)
+        }
+        composable(AppScreens.SearchScreens.route) {
+            SearchScreen()
+        }
+        composable(
+            route = AppScreens.GameScreen.route,
+            arguments = listOf(navArgument("id") { type = NavType.IntType })
+        ) { backStackEntry ->
+            val gameId = backStackEntry.arguments?.getInt("id")
+            Game(navController = navController, gameId = gameId ?: 0)
         }
     }
 }

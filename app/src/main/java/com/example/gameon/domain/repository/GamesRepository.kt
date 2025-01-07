@@ -10,5 +10,5 @@ interface GamesRepository {
 
     suspend fun getGamesByCategories(category: String): Resource<List<Games>>
 
-    suspend fun getGameById(id: Int): Resource<Game>
+    suspend fun getGameById(id: Int): Game
 }

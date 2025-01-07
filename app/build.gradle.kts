@@ -98,6 +98,9 @@ dependencies {
 
     implementation("io.coil-kt:coil-compose:2.6.0")
 
+    // navigation
+    implementation("androidx.hilt:hilt-navigation-compose:1.2.0")
+
     /*implementation(libs.androidx.hilt)
     implementation(libs.androidx.kapt)
     annotationProcessor("com.google.dagger:hilt-compiler:2.51.1")

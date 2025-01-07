@@ -1,5 +1,6 @@
 package com.example.gameon.presentation.components
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -19,18 +20,25 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.hilt.navigation.compose.hiltViewModel
 import com.example.gameon.domain.model.Games
+import com.example.gameon.presentation.homeScreen.GamesViewModel
 
 @Composable
 fun GameCard(
     games: List<Games>,
     text: String,
-    onLabelButtonClicked: () -> Unit
+    onLabelButtonClicked: () -> Unit,
+    onGameClicked: (Int) -> Unit
+
 ) {
+    val viewModel: GamesViewModel = hiltViewModel()
     Column(
         modifier = Modifier
             .fillMaxWidth()
             .padding(5.dp)
+            .background(MaterialTheme.colorScheme.onPrimary)
+
     ) {
         // Header row
         Row(
@@ -65,8 +73,12 @@ fun GameCard(
                         .padding(2.dp)
                         .width(100.dp),
                     horizontalAlignment = Alignment.CenterHorizontally
+
                 ) {
-                    ImageHolder(imageUrl = game.thumbnail ?: "")
+                    ImageHolder(
+                        imageUrl = game.thumbnail ?: "",
+                        onClick = { onGameClicked(game.id) }
+                    )
                     Text(
                         text = game.title ?: "Unknown Title",
                         style = MaterialTheme.typography.bodySmall,

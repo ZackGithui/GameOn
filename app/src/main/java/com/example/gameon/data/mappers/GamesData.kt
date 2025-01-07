@@ -13,7 +13,8 @@ fun GamesResponseItem.toGames(): Games {
         developer = developer,
         genre = genre,
         id = id,
-        shortDescription = shortDescription
+        shortDescription = shortDescription,
+        releaseDate = releaseDate
     )
 }
 
@@ -26,6 +27,7 @@ fun GameResponse.toGame(): Game {
         genre = genre,
         id = id,
         shortDescription = shortDescription,
-        description = description
+        description = description,
+        releaseDate = releaseDate
     )
 }

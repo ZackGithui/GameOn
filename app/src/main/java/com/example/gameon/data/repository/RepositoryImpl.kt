@@ -36,8 +36,7 @@ class RepositoryImpl @Inject constructor(private val api: FreeToGame) : GamesRep
             api.getGamesByCategory(category).map { it.toGames() }
         }
 
-    override suspend fun getGameById(id: Int): Resource<Game> =
-        safeApiCall(Dispatchers.IO) {
-            api.getGameById(id).toGame()
-        }
+    override suspend fun getGameById(id: Int): Game =
+
+        api.getGameById(id).toGame()
 }
