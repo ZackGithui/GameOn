@@ -1,0 +1,40 @@
+[33mf53bf42[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mDatabase[m[33m, [m[1;31morigin/Database[m[33m)[m HEAD@{0}: checkout: moving from search to Database
+[33m2e1dfa9[m[33m ([m[1;31morigin/search[m[33m, [m[1;32msearch[m[33m)[m HEAD@{1}: checkout: moving from main to search
+[33m8d73c70[m[33m ([m[1;31morigin/main[m[33m, [m[1;32mmain[m[33m)[m HEAD@{2}: checkout: moving from Database to main
+[33mf53bf42[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mDatabase[m[33m, [m[1;31morigin/Database[m[33m)[m HEAD@{3}: checkout: moving from main to Database
+[33m8d73c70[m[33m ([m[1;31morigin/main[m[33m, [m[1;32mmain[m[33m)[m HEAD@{4}: checkout: moving from Database to main
+[33mf53bf42[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mDatabase[m[33m, [m[1;31morigin/Database[m[33m)[m HEAD@{5}: commit: Database
+[33m2e1dfa9[m[33m ([m[1;31morigin/search[m[33m, [m[1;32msearch[m[33m)[m HEAD@{6}: checkout: moving from Database to Database
+[33m2e1dfa9[m[33m ([m[1;31morigin/search[m[33m, [m[1;32msearch[m[33m)[m HEAD@{7}: checkout: moving from search to Database
+[33m2e1dfa9[m[33m ([m[1;31morigin/search[m[33m, [m[1;32msearch[m[33m)[m HEAD@{8}: commit: updates
+[33ma5f68fe[m HEAD@{9}: checkout: moving from search to search
+[33ma5f68fe[m HEAD@{10}: commit: updates
+[33m3943f47[m HEAD@{11}: checkout: moving from search to search
+[33m3943f47[m HEAD@{12}: commit: updates
+[33ma37a324[m HEAD@{13}: checkout: moving from search to search
+[33ma37a324[m HEAD@{14}: commit: search-functionality
+[33m8d73c70[m[33m ([m[1;31morigin/main[m[33m, [m[1;32mmain[m[33m)[m HEAD@{15}: checkout: moving from main to search
+[33m8d73c70[m[33m ([m[1;31morigin/main[m[33m, [m[1;32mmain[m[33m)[m HEAD@{16}: commit: fixing
+[33m315b64a[m HEAD@{17}: commit: updates
+[33m6177f69[m HEAD@{18}: pull origin main: Fast-forward
+[33m4b16f0c[m HEAD@{19}: commit: updates
+[33m01775b3[m HEAD@{20}: commit: updates
+[33m38f90a6[m HEAD@{21}: commit (merge): updates
+[33mfba25ef[m[33m ([m[1;32mgames[m[33m)[m HEAD@{22}: commit: updates
+[33m166d7ae[m HEAD@{23}: commit: fixes
+[33m254878e[m HEAD@{24}: commit: updates
+[33m71cc265[m HEAD@{25}: commit: updates
+[33m5e77495[m HEAD@{26}: commit: updates
+[33m2066d92[m HEAD@{27}: commit: updates
+[33ma3fcb5b[m HEAD@{28}: commit: updates
+[33macd44fe[m HEAD@{29}: commit: updates
+[33m79d290d[m HEAD@{30}: commit: updates
+[33m8db168e[m HEAD@{31}: commit: updates
+[33m90218e7[m HEAD@{32}: commit: Updates
+[33m1e6a990[m HEAD@{33}: commit: updates
+[33m229eafe[m HEAD@{34}: commit: updates
+[33mdc28332[m HEAD@{35}: commit: Updates
+[33m4c13032[m HEAD@{36}: commit (amend): Updates
+[33m70a8ede[m HEAD@{37}: commit: First Commit
+[33m4e851cf[m HEAD@{38}: Branch: renamed refs/heads/master to refs/heads/main
+[33m4e851cf[m HEAD@{40}: commit (initial): First Commit

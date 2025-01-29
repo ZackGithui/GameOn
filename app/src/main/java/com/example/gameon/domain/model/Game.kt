@@ -1,5 +1,7 @@
 package com.example.gameon.domain.model
 
+import androidx.room.PrimaryKey
+
 data class Game(
     val description: String?,
     val thumbnail: String?,
@@ -10,4 +12,10 @@ data class Game(
     val developer: String?,
     val gameUrl: String?,
     val releaseDate: String?
+)
+data class LikedEntity(
+    val id: Int,
+    val title: String,
+    val thumbnail: String,
+    val genre: String
 )

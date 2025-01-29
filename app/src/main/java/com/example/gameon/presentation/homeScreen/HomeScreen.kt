@@ -64,7 +64,14 @@ fun HomeScreen(
                             games = state.anime,
                             text = "Anime",
                             onLabelButtonClicked = {},
-                            onGameClicked = {}
+                            onGameClicked = {
+                                    gameId ->
+                                navController.navigate(
+                                    AppScreens.GameScreen.createRoute(
+                                        gameId
+                                    )
+                                )
+                            }
                         )
                     }
                 }
@@ -74,7 +81,14 @@ fun HomeScreen(
                             games = state.sports,
                             text = "Sports",
                             onLabelButtonClicked = {},
-                            onGameClicked = {}
+                            onGameClicked = {
+                                    gameId ->
+                                navController.navigate(
+                                    AppScreens.GameScreen.createRoute(
+                                        gameId
+                                    )
+                                )
+                            }
                         )
                     }
                 }
@@ -84,7 +98,14 @@ fun HomeScreen(
                             games = state.fighting,
                             text = "Fighting",
                             onLabelButtonClicked = {},
-                            onGameClicked = {}
+                            onGameClicked = {
+                                    gameId ->
+                                navController.navigate(
+                                    AppScreens.GameScreen.createRoute(
+                                        gameId
+                                    )
+                                )
+                            }
                         )
                     }
                 }
@@ -95,7 +116,14 @@ fun HomeScreen(
                             games = state.racing,
                             text = "Racing",
                             onLabelButtonClicked = {},
-                            onGameClicked = {}
+                            onGameClicked = {
+                                    gameId ->
+                                navController.navigate(
+                                    AppScreens.GameScreen.createRoute(
+                                        gameId
+                                    )
+                                )
+                            }
                         )
                     }
                 }

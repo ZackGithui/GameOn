@@ -1,5 +1,6 @@
 package com.example.gameon.data.mappers
 
+import com.example.gameon.data.local.LikedEntity
 import com.example.gameon.data.remote.Dto.GameResponse
 import com.example.gameon.data.remote.Dto.GamesResponseItem
 import com.example.gameon.domain.model.Game
@@ -29,5 +30,15 @@ fun GameResponse.toGame(): Game {
         shortDescription = shortDescription,
         description = description,
         releaseDate = releaseDate
+    )
+}
+
+fun GamesResponseItem.toLikedEntity(): LikedEntity {
+    return LikedEntity(
+        id = id,
+        genre = genre,
+        thumbnail = thumbnail,
+        title = title
+
     )
 }

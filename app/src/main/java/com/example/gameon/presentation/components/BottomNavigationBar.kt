@@ -18,7 +18,7 @@ fun BottomNavigationBar(navController: NavController) {
     val items = listOf(
         AppScreens.HomeScreens,
         AppScreens.SearchScreens,
-        AppScreens.Favourites
+        AppScreens.FavouriteScreens
 
     )
 
@@ -43,7 +43,7 @@ fun BottomNavigationBar(navController: NavController) {
                 },
                 icon = {
                     Icon(
-                        imageVector = item.image,
+                        imageVector = item.icon,
                         contentDescription = "",
                         modifier = Modifier.size(30.dp)
                     )
