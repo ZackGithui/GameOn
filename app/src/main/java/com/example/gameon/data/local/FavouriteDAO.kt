@@ -17,6 +17,6 @@ interface FavouriteDAO {
     @Query("Select * From Favourites ")
     fun getAllGames(): Flow<List<LikedEntity>>
 
-    @Query("SELECT EXISTS(SELECT 1 FROM Favourites WHERE id = :id)")
-    suspend fun getGameById(id: String): Boolean
+    @Query("SELECT * FROM Favourites WHERE id = :id")
+    suspend fun getGameById(id: String): LikedEntity?
 }

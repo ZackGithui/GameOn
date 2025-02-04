@@ -22,25 +22,26 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
+import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import com.example.gameon.domain.model.Game
-import java.lang.Boolean.FALSE
 
 @Composable
 fun GameItem(
     game: Game,
     navController: NavController
+
 ) {
-    var clicked by remember {
-        mutableStateOf(FALSE)
-    }
+    val viewModel: GameViewModel = hiltViewModel()
+    viewModel.checkIfFavorite(game.id.toString())
+    val isFavourite = viewModel.isFavorite.observeAsState().value
+
     LazyColumn(
         modifier = Modifier
             .fillMaxSize()
@@ -78,11 +79,13 @@ fun GameItem(
                         }
 
                         IconButton(
-                            onClick = { clicked = !clicked }
+                            onClick = {
+                                viewModel.toggleSaveButton(game)
+                            }
 
                         ) {
                             Icon(
-                                imageVector = if (clicked) Icons.Default.Favorite else Icons.Outlined.FavoriteBorder,
+                                imageVector = if (isFavourite == true) Icons.Default.Favorite else Icons.Outlined.FavoriteBorder,
                                 contentDescription = "Favorite",
                                 tint = MaterialTheme.colorScheme.onPrimary,
                                 modifier = Modifier.size(30.dp)

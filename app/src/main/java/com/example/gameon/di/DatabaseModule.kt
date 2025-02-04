@@ -2,6 +2,7 @@ package com.example.gameon.di
 
 import android.content.Context
 import androidx.room.Room
+import com.example.gameon.data.local.FavouriteDAO
 import com.example.gameon.data.local.GameDatabase
 import dagger.Module
 import dagger.Provides
@@ -22,9 +23,9 @@ object DatabaseModule {
             .build()
     }
 
-    /*@Provides
+    @Provides
     @Singleton
     fun provideFavouriteDAO(database: GameDatabase): FavouriteDAO {
         return database.favouriteDAO()
-    }*/
+    }
 }

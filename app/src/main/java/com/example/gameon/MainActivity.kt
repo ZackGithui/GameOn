@@ -10,6 +10,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
+import com.example.gameon.presentation.favourite.FavouriteScreen
 import com.example.gameon.presentation.game.Game
 import com.example.gameon.presentation.homeScreen.HomeScreen
 import com.example.gameon.presentation.navigation.AppScreens
@@ -40,6 +41,9 @@ fun App() {
         }
         composable(AppScreens.SearchScreens.route) {
             SearchScreen()
+        }
+        composable(AppScreens.FavouriteScreens.route) {
+            FavouriteScreen()
         }
         composable(
             route = AppScreens.GameScreen.route,
