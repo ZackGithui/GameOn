@@ -4,9 +4,9 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
-import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
-import androidx.compose.runtime.Composable
+import androidx.compose.ui.Modifier
 import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
@@ -30,35 +30,36 @@ class MainActivity : ComponentActivity() {
         setContent {
             GameOnTheme {
                 val navController = rememberNavController()
-                Scaffold(bottomBar = {
-                    BottomNavigationBar(navController = navController)
-                }) { paddingValues ->
-                    App(paddingValues)
+                Scaffold(
+                    bottomBar = {
+                        BottomNavigationBar(navController = navController)
+                    }
+                ) { it ->
+                    NavHost(
+                        navController = navController,
+                        startDestination = AppScreens.HomeScreens.route,
+                        modifier = Modifier.padding(it)
+                    ) {
+                        composable(AppScreens.HomeScreens.route) {
+                            HomeScreen(navController = navController)
+                        }
+                        composable(AppScreens.SearchScreens.route) {
+                            SearchScreen()
+                        }
+                        composable(AppScreens.FavouriteScreens.route) {
+                            FavouriteScreen()
+                        }
+                        composable(
+
+                            route = AppScreens.GameScreen.route,
+                            arguments = listOf(navArgument("id") { type = NavType.IntType })
+                        ) { backStackEntry ->
+                            val gameId = backStackEntry.arguments?.getInt("id")
+                            Game(navController = navController, gameId = gameId ?: 0)
+                        }
+                    }
                 }
             }
-        }
-    }
-}
-
-@Composable
-fun App(paddingValues: PaddingValues) {
-    val navController = rememberNavController()
-    NavHost(navController = navController, startDestination = AppScreens.HomeScreens.route) {
-        composable(AppScreens.HomeScreens.route) {
-            HomeScreen(navController = navController)
-        }
-        composable(AppScreens.SearchScreens.route) {
-            SearchScreen()
-        }
-        composable(AppScreens.FavouriteScreens.route) {
-            FavouriteScreen()
-        }
-        composable(
-            route = AppScreens.GameScreen.route,
-            arguments = listOf(navArgument("id") { type = NavType.IntType })
-        ) { backStackEntry ->
-            val gameId = backStackEntry.arguments?.getInt("id")
-            Game(navController = navController, gameId = gameId ?: 0)
         }
     }
 }

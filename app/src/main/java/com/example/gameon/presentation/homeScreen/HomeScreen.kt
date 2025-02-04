@@ -27,12 +27,13 @@ fun HomeScreen(
     Scaffold(
         modifier = Modifier
             .fillMaxSize()
-            .background(color = MaterialTheme.colorScheme.background),
+            .background(color = MaterialTheme.colorScheme.onPrimary),
         topBar = { TopPart(navController) },
         bottomBar = {},
         content = { paddingValues ->
             LazyColumn(
                 modifier = Modifier
+                    .background(color = MaterialTheme.colorScheme.onPrimary)
                     .padding(paddingValues)
                     .fillMaxSize()
 
