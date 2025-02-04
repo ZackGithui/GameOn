@@ -1,7 +1,5 @@
 package com.example.gameon.domain.model
 
-import androidx.room.PrimaryKey
-
 data class Game(
     val description: String?,
     val thumbnail: String?,

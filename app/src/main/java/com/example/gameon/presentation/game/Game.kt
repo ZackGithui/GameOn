@@ -14,10 +14,10 @@ import androidx.navigation.NavController
 @Composable
 fun Game(
     gameId: Int,
-    navController: NavController,
-    viewModel: GameViewModel = hiltViewModel()
+    navController: NavController
 
 ) {
+    val viewModel: GameViewModel = hiltViewModel()
     val state = viewModel.state.collectAsStateWithLifecycle().value
     LaunchedEffect(gameId) {
         viewModel.loadGame(gameId)

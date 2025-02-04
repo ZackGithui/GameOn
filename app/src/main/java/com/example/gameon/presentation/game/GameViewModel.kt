@@ -4,29 +4,31 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.gameon.data.local.GameDatabase
+import com.example.gameon.data.local.FavouriteDAO
 import com.example.gameon.data.local.LikedEntity
 import com.example.gameon.domain.model.Game
 import com.example.gameon.domain.repository.GamesRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
+import javax.inject.Inject
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
-import kotlinx.coroutines.flow.flatMap
-import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.toList
 import kotlinx.coroutines.launch
-import javax.inject.Inject
 
 @HiltViewModel
 class GameViewModel @Inject constructor(
     private val repository: GamesRepository,
-    private val database: GameDatabase
+    private val favouriteDAO: FavouriteDAO
 ) : ViewModel() {
     private val _state = MutableStateFlow(GameState())
     val state = _state.asStateFlow()
 
     private val _isFavorite = MutableLiveData<Boolean>()
     val isFavorite: LiveData<Boolean> get() = _isFavorite
+
+    init {
+        checkIfFavorite(_state.value.game?.id.toString())
+    }
 
     fun loadGame(id: Int) {
         viewModelScope.launch {
@@ -37,35 +39,47 @@ class GameViewModel @Inject constructor(
 
     fun checkIfFavorite(gameId: String) {
         viewModelScope.launch {
-            _isFavorite.value = database.favouriteDAO().getGameById(gameId)
+            val likedGame = favouriteDAO.getGameById(gameId)
+            _isFavorite.postValue(likedGame != null)
+            _state.value.copy(
+                savedGame = likedGame
+            )
         }
     }
 
-    fun toggleSaveButton(likedEntity: LikedEntity) {
+    fun toggleSaveButton(game: Game) {
         viewModelScope.launch {
-            val isFavorite = database.favouriteDAO().getGameById(likedEntity.id.toString())
-            if (isFavorite) {
-               database.favouriteDAO().deleteGame(likedEntity)
+            val existingGame = favouriteDAO.getGameById(game.id.toString())
+
+            if (existingGame != null) {
+                favouriteDAO.deleteGame(existingGame)
                 _isFavorite.postValue(false)
+                _state.value = _state.value.copy(savedGame = null)
             } else {
-                database.favouriteDAO().updateGames(likedEntity)
+                val likedEntity = LikedEntity(
+                    id = game.id,
+                    title = game.title ?: "",
+                    thumbnail = game.thumbnail ?: "",
+                    genre = game.genre ?: ""
+                )
+                favouriteDAO.updateGames(likedEntity)
                 _isFavorite.postValue(true)
+                _state.value = _state.value.copy(savedGame = likedEntity)
             }
         }
     }
 
     suspend fun isGameSaved(id: String): Boolean {
-        return database.favouriteDAO().getGameById(id) != null
+        return favouriteDAO.getGameById(id) != null
     }
 
     fun getFavoriteGames() {
         viewModelScope.launch {
-            val savedGames = database.favouriteDAO().getAllGames().toList().flatten()
+            val savedGames = favouriteDAO.getAllGames().toList().flatten()
             _state.value = _state.value.copy(savedGames = savedGames)
         }
     }
 }
-
 
 data class GameState(
 
