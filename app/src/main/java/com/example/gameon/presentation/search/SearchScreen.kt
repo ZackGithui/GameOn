@@ -42,7 +42,7 @@ fun SearchScreen(
 
         modifier = Modifier
             .fillMaxSize()
-            .background(MaterialTheme.colorScheme.background)
+            .background(color = MaterialTheme.colorScheme.onPrimary)
             .padding(10.dp)
     ) {
         OutlinedTextField(

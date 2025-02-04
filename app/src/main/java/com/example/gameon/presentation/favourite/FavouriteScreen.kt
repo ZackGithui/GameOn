@@ -22,7 +22,7 @@ fun FavouriteScreen() {
             Row(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .background(MaterialTheme.colorScheme.onPrimary)
+                    .background(color = MaterialTheme.colorScheme.onPrimary)
             ) {
                 viewModel.state.value.game?.let {
                     FavouriteItem(
