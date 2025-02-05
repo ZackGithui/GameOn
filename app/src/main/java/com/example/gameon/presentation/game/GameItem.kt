@@ -21,9 +21,7 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
 import androidx.compose.runtime.livedata.observeAsState
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
@@ -31,6 +29,7 @@ import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import com.example.gameon.domain.model.Game
+import com.example.gameon.presentation.navigation.AppScreens
 
 @Composable
 fun GameItem(
@@ -67,7 +66,13 @@ fun GameItem(
                         verticalAlignment = Alignment.CenterVertically
                     ) {
                         IconButton(
-                            onClick = { /* Handle back action */ }
+                            onClick = {
+                                navController.navigate(AppScreens.HomeScreens.route) {
+                                    popUpTo(AppScreens.HomeScreens.route) {
+                                        inclusive = true
+                                    }
+                                }
+                            }
 
                         ) {
                             Icon(
