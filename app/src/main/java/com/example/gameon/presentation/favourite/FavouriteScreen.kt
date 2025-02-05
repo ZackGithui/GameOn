@@ -17,12 +17,15 @@ import com.example.gameon.presentation.game.GameViewModel
 @Composable
 fun FavouriteScreen() {
     val viewModel: GameViewModel = hiltViewModel()
-    LazyColumn(modifier = Modifier.fillMaxSize()) {
+    LazyColumn(
+        modifier = Modifier.fillMaxSize()
+            .background(color = MaterialTheme.colorScheme.onPrimary)
+    ) {
         item {
             Row(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .background(color = MaterialTheme.colorScheme.onPrimary)
+
             ) {
                 viewModel.state.value.game?.let {
                     FavouriteItem(

@@ -1,5 +1,9 @@
 package com.example.gameon.presentation.navigation
 
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Favorite
+import androidx.compose.material.icons.filled.Home
+import androidx.compose.material.icons.filled.Search
 import androidx.compose.material3.BottomAppBar
 import androidx.compose.material3.NavigationBarItem
 import androidx.compose.material3.Text
@@ -24,7 +28,7 @@ fun BottomNavigationBar(navController: NavController) {
                         launchSingleTop = true
                     }
                 },
-                icon = { item.icon },
+                icon = { if (currentRoute == item.route) Icons.Filled.Home else item.icon },
                 label = { Text(text = item.title) }
             )
             NavigationBarItem(
@@ -35,7 +39,7 @@ fun BottomNavigationBar(navController: NavController) {
                         launchSingleTop = true
                     }
                 },
-                icon = { item.icon },
+                icon = { if (currentRoute == item.route) Icons.Filled.Search else item.icon },
                 label = { Text(text = item.title) }
             )
             NavigationBarItem(
@@ -46,7 +50,7 @@ fun BottomNavigationBar(navController: NavController) {
                         launchSingleTop = true
                     }
                 },
-                icon = { item.icon },
+                icon = { if (currentRoute == item.route) Icons.Filled.Favorite else item.icon },
                 label = { Text(text = item.title) }
             )
         }

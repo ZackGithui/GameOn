@@ -15,7 +15,9 @@ sealed class AppScreens(val route: String, val title: String, val icon: ImageVec
         "Favourites",
         icon = Icons.Default.FavoriteBorder
     )
-    data object GameScreen : AppScreens("Game screen/{id}", "Game", icon = Icons.Default.ArrowBack) {
+
+    data object GameScreen :
+        AppScreens("Game screen/{id}", "Game", icon = Icons.Default.ArrowBack) {
         fun createRoute(id: Int) = "Game screen/$id"
     }
 }
