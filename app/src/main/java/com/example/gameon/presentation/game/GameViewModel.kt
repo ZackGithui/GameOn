@@ -12,7 +12,6 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
-import kotlinx.coroutines.flow.toList
 import kotlinx.coroutines.launch
 
 @HiltViewModel
@@ -28,6 +27,7 @@ class GameViewModel @Inject constructor(
 
     init {
         checkIfFavorite(_state.value.game?.id.toString())
+        getFavoriteGames()
     }
 
     fun loadGame(id: Int) {
@@ -75,8 +75,9 @@ class GameViewModel @Inject constructor(
 
     fun getFavoriteGames() {
         viewModelScope.launch {
-            val savedGames = favouriteDAO.getAllGames().toList().flatten()
-            _state.value = _state.value.copy(savedGames = savedGames)
+            favouriteDAO.getAllGames().collect { savedGames ->
+                _state.value = _state.value.copy(savedGames = savedGames)
+            }
         }
     }
 }
