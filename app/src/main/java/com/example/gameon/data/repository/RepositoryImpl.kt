@@ -7,21 +7,17 @@ import com.example.gameon.domain.model.Game
 import com.example.gameon.domain.model.Games
 import com.example.gameon.domain.repository.GamesRepository
 import com.example.gameon.util.Resource
-import com.example.gameon.util.safeApiCall
 import java.io.IOException
 import javax.inject.Inject
-import kotlinx.coroutines.Dispatchers
 import retrofit2.HttpException
 
 class RepositoryImpl @Inject constructor(private val api: FreeToGame) : GamesRepository {
     override suspend fun getAllGames(): Resource<List<Games>> =
 
         try {
-            val games = api.getAllGames()
+            val games = api.getAllGames().map { it.toGames() }
 
-            val allGames = games.map { it.toGames() }
-
-            Resource.Success(allGames)
+            Resource.Success(games)
         } catch (e: HttpException) {
             Resource.Error(e.localizedMessage ?: "Unexpected error occurred")
         } catch (e: IOException) {
@@ -32,8 +28,16 @@ class RepositoryImpl @Inject constructor(private val api: FreeToGame) : GamesRep
 
     override suspend fun getGamesByCategories(category: String): Resource<List<Games>> =
 
-        safeApiCall(Dispatchers.IO) {
-            api.getGamesByCategory(category).map { it.toGames() }
+        try {
+            val games = api.getGamesByCategory(category).map { it.toGames() }
+            // ver eror occurred  Log.d(TAG, "getGamesByCategories: $games")
+            Resource.Success(games)
+        } catch (e: HttpException) {
+            Resource.Error(e.localizedMessage ?: "Unexpected error occurred")
+        } catch (e: IOException) {
+            Resource.Error("Server error occurred")
+        } catch (e: Exception) {
+            Resource.Error("An unknown error occurred")
         }
 
     override suspend fun getGameById(id: Int): Game =

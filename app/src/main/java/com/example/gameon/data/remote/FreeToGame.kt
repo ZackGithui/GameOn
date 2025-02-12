@@ -12,7 +12,7 @@ interface FreeToGame {
 
     @GET("games")
     suspend fun getGamesByCategory(
-        @Query("category") category: String = "shooter"
+        @Query("category") category: String
     ): List<GamesResponseItem>
 
     @GET("game")

@@ -6,6 +6,7 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.width
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
@@ -22,11 +23,24 @@ fun SearchedItem(game: Games) {
         ImageHolder(imageUrl = game.thumbnail ?: "", onClick = {})
 
         Column {
-            Text(text = game.title ?: "Unknown Game") // Game title
+            Row {
+                Text(text = "Game title")
+                Spacer(modifier = Modifier.width(30.dp))
+                Text(text = game.title ?: "Unknown Game") // Game title
+            }
             Spacer(modifier = Modifier.height(5.dp))
-            Text(text = game.genre ?: "Unknown Genre") // Game genre
+            Row {
+                Text(text = "Game genre")
+                Spacer(modifier = Modifier.width(30.dp))
+                Text(text = game.genre ?: "Unknown Genre") // Game genre
+            }
+
             Spacer(modifier = Modifier.height(5.dp))
-            Text(text = game.releaseDate ?: "Release Date Unknown") // Release date
+            Row {
+                Text(text = "Release data")
+                Spacer(modifier = Modifier.width(30.dp))
+                Text(text = game.releaseDate ?: "Release Date Unknown") // Release date
+            }
         }
     }
     Spacer(modifier = Modifier.height(15.dp))

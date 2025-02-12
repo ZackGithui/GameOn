@@ -12,6 +12,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
+import com.example.gameon.presentation.category.CategoryScreen
 import com.example.gameon.presentation.components.BottomNavigationBar
 import com.example.gameon.presentation.favourite.FavouriteScreen
 import com.example.gameon.presentation.game.Game
@@ -48,6 +49,9 @@ class MainActivity : ComponentActivity() {
                         }
                         composable(AppScreens.FavouriteScreens.route) {
                             FavouriteScreen()
+                        }
+                        composable(AppScreens.CategoryScreen.route) {
+                            CategoryScreen()
                         }
                         composable(
 

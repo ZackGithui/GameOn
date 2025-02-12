@@ -1,13 +1,8 @@
 package com.example.gameon.util
 
-import java.io.IOException
-import kotlinx.coroutines.CoroutineDispatcher
-import kotlinx.coroutines.withContext
-import retrofit2.HttpException
-
-suspend fun <T> safeApiCall(
+/*suspend fun <T> safeApiCall(
     dispatcher: CoroutineDispatcher,
-    api: suspend () -> T
+    api: () -> Resource.Error<List<Games>>
 ): Resource<T> {
     return withContext(dispatcher) {
         try {
@@ -20,4 +15,4 @@ suspend fun <T> safeApiCall(
             }
         }
     }
-}
+}*/

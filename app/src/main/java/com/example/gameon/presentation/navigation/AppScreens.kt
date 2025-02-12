@@ -2,6 +2,7 @@ package com.example.gameon.presentation.navigation
 
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
+import androidx.compose.material.icons.filled.Close
 import androidx.compose.material.icons.filled.FavoriteBorder
 import androidx.compose.material.icons.filled.Home
 import androidx.compose.material.icons.filled.Search
@@ -20,4 +21,7 @@ sealed class AppScreens(val route: String, val title: String, val icon: ImageVec
         AppScreens("Game screen/{id}", "Game", icon = Icons.Default.ArrowBack) {
         fun createRoute(id: Int) = "Game screen/$id"
     }
+
+    data object CategoryScreen :
+        AppScreens("Category screen", "category", icon = Icons.Default.Close)
 }
