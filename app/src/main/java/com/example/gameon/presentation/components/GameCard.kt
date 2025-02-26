@@ -37,7 +37,7 @@ fun GameCard(
         modifier = Modifier
             .fillMaxWidth()
             .padding(5.dp)
-            .background(MaterialTheme.colorScheme.onPrimary)
+
 
     ) {
         // Header row
@@ -64,7 +64,8 @@ fun GameCard(
 
         // LazyRow for game items
         LazyRow(
-            modifier = Modifier.padding(vertical = 8.dp),
+            modifier = Modifier.padding(vertical = 8.dp)
+                .background(MaterialTheme.colorScheme.surface),
             horizontalArrangement = Arrangement.spacedBy(10.dp)
         ) {
             items(games) { game ->

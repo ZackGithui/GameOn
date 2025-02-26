@@ -27,6 +27,7 @@ import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.example.gameon.ui.theme.GameOnTheme
 
 @Composable
 fun ShimmerScreen() {
@@ -109,30 +110,27 @@ fun ShimmerObject(brush: Brush) {
     }
 }
 
-@Preview(uiMode = Configuration.UI_MODE_NIGHT_YES)
+@Preview(
+    uiMode = Configuration.UI_MODE_NIGHT_YES,
+    name = "DefaultPreviewDark"
+)
+@Preview(
+    uiMode = Configuration.UI_MODE_NIGHT_NO,
+    name = "DefaultPreviewLight"
+)
 @Composable
 private fun ShimmerPrev() {
-    ShimmerObject(
-        brush = Brush.linearGradient(
-            colors = listOf(
-                Color.LightGray.copy(0.6f),
-                Color.LightGray.copy(0.2f),
-                Color.LightGray.copy(0.6f)
+    GameOnTheme {
+        ShimmerObject(
+            brush = Brush.linearGradient(
+                colors = listOf(
+                    Color.LightGray.copy(0.7f),
+                    Color.LightGray.copy(0.2f),
+                    Color.LightGray.copy(0.7f)
+                )
             )
         )
-    )
+
+    }
 }
 
-@Preview(uiMode = Configuration.UI_MODE_NIGHT_NO)
-@Composable
-private fun ShimmerPrev2() {
-    ShimmerObject(
-        brush = Brush.linearGradient(
-            colors = listOf(
-                Color.LightGray.copy(0.7f),
-                Color.LightGray.copy(0.2f),
-                Color.LightGray.copy(0.7f)
-            )
-        )
-    )
-}

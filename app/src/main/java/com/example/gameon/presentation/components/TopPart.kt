@@ -26,7 +26,9 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
+import androidx.navigation.compose.rememberNavController
 import com.example.gameon.R
+import com.example.gameon.ui.theme.GameOnTheme
 
 @Composable
 fun TopPart(
@@ -34,7 +36,7 @@ fun TopPart(
 ) {
     Column(
         modifier = Modifier
-            .background(color = MaterialTheme.colorScheme.onPrimary)
+            .background(color = MaterialTheme.colorScheme.primary)
     ) {
         Row(
             modifier = Modifier
@@ -48,7 +50,7 @@ fun TopPart(
             Text(
                 text = stringResource(id = R.string.Title),
                 style = MaterialTheme.typography.titleMedium.copy(fontSize = 24.sp),
-                color = MaterialTheme.colorScheme.onBackground
+                color = MaterialTheme.colorScheme.onPrimary
             )
 
             Image(
@@ -57,7 +59,7 @@ fun TopPart(
                 contentDescription = stringResource(id = R.string.Logo),
                 modifier = Modifier.size(70.dp),
                 contentScale = ContentScale.Crop,
-                colorFilter = ColorFilter.tint(color = MaterialTheme.colorScheme.onBackground)
+                colorFilter = ColorFilter.tint(color = MaterialTheme.colorScheme.onPrimary)
 
             )
         }
@@ -95,7 +97,8 @@ fun TopPart(
             )
         }*/
         Divider(
-            modifier = Modifier.background(MaterialTheme.colorScheme.surface)
+            modifier = Modifier
+                .background(MaterialTheme.colorScheme.surface)
                 .height(2.dp)
         )
     }
@@ -106,9 +109,18 @@ fun TopPart(
 )
 @Composable
 fun TopPartPrev() {
+    GameOnTheme {
+        val navController = rememberNavController()
+        TopPart(navController = navController)
+    }
+
 }
 
 @Preview(showBackground = true, uiMode = Configuration.UI_MODE_NIGHT_NO)
 @Composable
 fun TopPartPrev1() {
+    GameOnTheme {
+        val navController = rememberNavController()
+        TopPart(navController = navController)
+    }
 }
