@@ -17,6 +17,7 @@ import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -37,7 +38,6 @@ fun GameCard(
         modifier = Modifier
             .fillMaxWidth()
             .padding(5.dp)
-
 
     ) {
         // Header row
@@ -65,7 +65,7 @@ fun GameCard(
         // LazyRow for game items
         LazyRow(
             modifier = Modifier.padding(vertical = 8.dp)
-                .background(MaterialTheme.colorScheme.surface),
+                .background(Color.Transparent),
             horizontalArrangement = Arrangement.spacedBy(10.dp)
         ) {
             items(games) { game ->
